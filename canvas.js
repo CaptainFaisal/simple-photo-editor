@@ -34,7 +34,7 @@ window.onload = async () => {
         canvas1.width = getWidth(img1, 500);
         ctx1.globalCompositeOperation = "multiply";
         ctx1.drawImage(img1, 0, 0, getWidth(img1, 500), 500);
-        ctx1.translate(90, 120);
+        ctx1.translate((canvas1.width - getWidth(img, 320)) / 2 - 5, 120);
         ctx1.drawImage(img, 0, 0, getWidth(img, 320), 320);
         //Curtain
         canvas2.height = 500;
