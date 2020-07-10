@@ -61,7 +61,7 @@ window.onload = async () => {
         canvas4.width = getWidth(img4, 500);
         ctx4.globalCompositeOperation = "multiply";
         ctx4.drawImage(img4, 0, 0, getWidth(img4, 400), 400);
-        ctx4.transform(1, 0.13, 0.1, 1, 335, 180);
+        ctx4.transform(1, 0.13, 0.2, 0.8, 335, 180);
         ctx4.rotate((-15 * Math.PI) / 180);
         ctx4.drawImage(img, 0, 0, getWidth(img, 250), 180);
       });
