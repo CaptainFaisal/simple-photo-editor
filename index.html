@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <input type="file" name="inpFile" id="inpFile" />
+    <div class="drop-zone">
+      <span class="drop-zone__prompt">Drop file here or click to upload</span>
+      <input type="file" name="myFile" class="drop-zone__input" />
+    </div>
     <canvas id="canvas1"></canvas>
     <canvas id="canvas2"></canvas>
     <canvas id="canvas3"></canvas>
