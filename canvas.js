@@ -7,6 +7,9 @@ window.onload = async () => {
   const ctx2 = canvas2.getContext("2d");
   const ctx3 = canvas3.getContext("2d");
   const ctx4 = canvas4.getContext("2d");
+  [canvas1, canvas2, canvas3, canvas4].forEach(
+    (canvas) => (canvas.style.display = "none")
+  );
   const loadImage = (url) => {
     return new Promise((r) => {
       let i = new Image();
@@ -19,15 +22,18 @@ window.onload = async () => {
   const img2 = await loadImage("curtain.jpg");
   const img3 = await loadImage("water.jpg");
   const img4 = await loadImage("hammer.jpg");
-  const widthShirt = 190;
-  const widthCurtain = 220;
+  const widthShirt = 150;
+  const widthCurtain = 195;
+  const heightBgTShirt = 400;
+  const heightBgCurtain = 400;
+  const heightBgWater = 400;
+  const heightBgHammer = 400;
   const getWidth = (img, height) => {
     return height * (img.width / img.height);
   };
   const getHeight = (img, width) => {
     return width * (img.height / img.width);
   };
-
   document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
     const dropZoneElement = inputElement.closest(".drop-zone");
     dropZoneElement.addEventListener("click", (e) => {
@@ -93,39 +99,66 @@ window.onload = async () => {
       reader.readAsDataURL(file);
       reader.onload = async () => {
         img = await loadImage(reader.result);
+        [canvas1, canvas2, canvas3, canvas4].forEach(
+          (canvas) => (canvas.style.display = "block")
+        );
         //T-Shirt
-        canvas1.height = 500;
-        canvas1.width = getWidth(img1, 500);
+        canvas1.height = heightBgTShirt;
+        canvas1.width = getWidth(img1, heightBgTShirt);
         ctx1.globalCompositeOperation = "multiply";
-        ctx1.drawImage(img1, 0, 0, getWidth(img1, 500), 500);
+        ctx1.drawImage(
+          img1,
+          0,
+          0,
+          getWidth(img1, heightBgTShirt),
+          heightBgTShirt
+        );
         ctx1.translate(
           (canvas1.width - widthShirt) / 2 - 2,
           (canvas1.height - getHeight(img, widthShirt)) / 2 + 30
         );
         ctx1.drawImage(img, 0, 0, widthShirt, getHeight(img, widthShirt));
         //Curtain
-        canvas2.height = 500;
-        canvas2.width = getWidth(img2, 500);
+        canvas2.height = heightBgCurtain;
+        canvas2.width = getWidth(img2, heightBgCurtain);
         ctx2.globalCompositeOperation = "multiply";
-        ctx2.drawImage(img2, 0, 0, getWidth(img2, 500), 500);
+        ctx2.drawImage(
+          img2,
+          0,
+          0,
+          getWidth(img2, heightBgCurtain),
+          heightBgCurtain
+        );
         ctx2.translate(
-          canvas2.width - widthCurtain - 20,
+          canvas2.width - widthCurtain,
           (canvas2.height - getHeight(img, widthCurtain)) / 2
         );
         ctx2.drawImage(img, 0, 0, widthCurtain, getHeight(img, widthCurtain));
         //Water
-        canvas3.height = 500;
-        canvas3.width = getWidth(img3, 500);
+        canvas3.height = heightBgWater;
+        canvas3.width = getWidth(img3, heightBgWater);
         ctx3.globalCompositeOperation = "multiply";
-        ctx3.drawImage(img3, 0, 0, getWidth(img3, 400), 400);
+        ctx3.drawImage(
+          img3,
+          0,
+          0,
+          getWidth(img3, heightBgWater),
+          heightBgWater
+        );
         ctx3.translate(100, 100);
         ctx3.rotate((-30 * Math.PI) / 180);
         ctx3.drawImage(img, 0, 0, getWidth(img, 320), 320);
         //hammer
-        canvas4.height = 500;
-        canvas4.width = getWidth(img4, 500);
+        canvas4.height = heightBgHammer;
+        canvas4.width = getWidth(img4, heightBgHammer);
         ctx4.globalCompositeOperation = "multiply";
-        ctx4.drawImage(img4, 0, 0, getWidth(img4, 400), 400);
+        ctx4.drawImage(
+          img4,
+          0,
+          0,
+          getWidth(img4, heightBgHammer),
+          heightBgHammer
+        );
         ctx4.transform(1, 0.13, 0.2, 0.8, 335, 180);
         ctx4.rotate((-15 * Math.PI) / 180);
         ctx4.drawImage(img, 0, 0, getWidth(img, 250), 180);
