@@ -23,7 +23,7 @@ window.onload = async () => {
   const img3 = await loadImage("water.jpg");
   const img4 = await loadImage("hammer.jpg");
   const widthShirt = 250;
-  const heightWater = 600;
+  const widthWater = 360;
   const widthCurtain = 350;
   const heightBgTShirt = 720;
   const heightBgCurtain = 720;
@@ -148,7 +148,7 @@ window.onload = async () => {
         );
         ctx3.translate(100, 200);
         ctx3.rotate((-30 * Math.PI) / 180);
-        ctx3.drawImage(img, 0, 0, getWidth(img, heightWater), heightWater);
+        ctx3.drawImage(img, 0, 0, widthWater, getHeight(img, widthWater));
         //hammer
         canvas4.height = heightBgHammer;
         canvas4.width = getWidth(img4, heightBgHammer);
@@ -160,7 +160,7 @@ window.onload = async () => {
           getWidth(img4, heightBgHammer),
           heightBgHammer
         );
-        ctx4.transform(1, 0.13, 0.2, 0.8, 600, 330);
+        ctx4.transform(1, 0.13, 0.2, 0.8, 590, 330);
         ctx4.rotate((-17 * Math.PI) / 180);
         ctx4.drawImage(img, 0, 0, 300, 350);
         dropZoneElement.style.display = "none";
