@@ -69,12 +69,13 @@ body {
 
 @media (max-width: 690px) {
   .container1 {
-    position: relative;
-    top: 100px;
+    position: absolute;
+    top: -500px;
     grid-template-areas:
       "canvas1"
       "canvas2"
       "canvas3"
       "canvas4";
+    transform: scale(0.3);
   }
 }
