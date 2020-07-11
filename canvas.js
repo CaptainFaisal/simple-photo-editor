@@ -22,12 +22,13 @@ window.onload = async () => {
   const img2 = await loadImage("curtain.jpg");
   const img3 = await loadImage("water.jpg");
   const img4 = await loadImage("hammer.jpg");
-  const widthShirt = 150;
-  const widthCurtain = 195;
-  const heightBgTShirt = 400;
-  const heightBgCurtain = 400;
-  const heightBgWater = 400;
-  const heightBgHammer = 400;
+  const widthShirt = 250;
+  const heightWater = 600;
+  const widthCurtain = 350;
+  const heightBgTShirt = 720;
+  const heightBgCurtain = 720;
+  const heightBgWater = 720;
+  const heightBgHammer = 720;
   const getWidth = (img, height) => {
     return height * (img.width / img.height);
   };
@@ -115,7 +116,7 @@ window.onload = async () => {
         );
         ctx1.translate(
           (canvas1.width - widthShirt) / 2 - 2,
-          (canvas1.height - getHeight(img, widthShirt)) / 2 + 30
+          (canvas1.height - getHeight(img, widthShirt)) / 2 + 40
         );
         ctx1.drawImage(img, 0, 0, widthShirt, getHeight(img, widthShirt));
         //Curtain
@@ -145,9 +146,9 @@ window.onload = async () => {
           getWidth(img3, heightBgWater),
           heightBgWater
         );
-        ctx3.translate(100, 100);
+        ctx3.translate(100, 200);
         ctx3.rotate((-30 * Math.PI) / 180);
-        ctx3.drawImage(img, 0, 0, getWidth(img, 320), 320);
+        ctx3.drawImage(img, 0, 0, getWidth(img, heightWater), heightWater);
         //hammer
         canvas4.height = heightBgHammer;
         canvas4.width = getWidth(img4, heightBgHammer);
@@ -159,9 +160,9 @@ window.onload = async () => {
           getWidth(img4, heightBgHammer),
           heightBgHammer
         );
-        ctx4.transform(1, 0.13, 0.2, 0.8, 335, 180);
-        ctx4.rotate((-15 * Math.PI) / 180);
-        ctx4.drawImage(img, 0, 0, getWidth(img, 250), 180);
+        ctx4.transform(1, 0.13, 0.2, 0.8, 600, 330);
+        ctx4.rotate((-17 * Math.PI) / 180);
+        ctx4.drawImage(img, 0, 0, 300, 350);
         dropZoneElement.style.display = "none";
       };
     } else {

@@ -59,23 +59,25 @@ body {
   text-align: center;
 }
 .container1 {
+  position: absolute;
+  top: -300px;
   display: grid;
   grid-gap: 1em;
   grid-template-areas:
     "canvas1 canvas2"
     "canvas3 canvas4";
-  transform: scale(0.5);
+  transform: scale(0.4);
 }
 
 @media (max-width: 690px) {
   .container1 {
+    transform: scale(0.3);
     position: absolute;
-    top: -500px;
+    top: -960px;
     grid-template-areas:
       "canvas1"
       "canvas2"
       "canvas3"
       "canvas4";
-    transform: scale(0.3);
   }
 }
