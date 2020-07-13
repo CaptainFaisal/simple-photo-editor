@@ -60,20 +60,21 @@ body {
 }
 .container1 {
   position: absolute;
-  top: -300px;
+  top: -100px;
   display: grid;
   grid-gap: 1em;
   grid-template-areas:
     "canvas1 canvas2"
     "canvas3 canvas4";
-  transform: scale(0.4);
+  transform: scale(0.5);
 }
 
 @media (max-width: 690px) {
   .container1 {
-    transform: scale(0.3);
+    transform: scale(0.4);
     position: absolute;
-    top: -960px;
+    top: -500px;
+    grid-gap: 1em;
     grid-template-areas:
       "canvas1"
       "canvas2"

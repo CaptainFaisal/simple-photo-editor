@@ -22,13 +22,17 @@ window.onload = async () => {
   const img2 = await loadImage("curtain.jpg");
   const img3 = await loadImage("water.jpg");
   const img4 = await loadImage("hammer.jpg");
-  const widthShirt = 250;
-  const widthWater = 360;
-  const widthCurtain = 350;
-  const heightBgTShirt = 720;
-  const heightBgCurtain = 720;
-  const heightBgWater = 720;
-  const heightBgHammer = 720;
+  const widthShirt = 240;
+  const heightShirt = 410;
+  const widthWater = 250;
+  const heightCurtain = 380;
+  const widthCurtain = 190;
+  const heightHammer = 180;
+  const widthHammer = 110;
+  const heightBgTShirt = img1.height;
+  const heightBgCurtain = img2.height;
+  const heightBgWater = img3.height;
+  const heightBgHammer = img4.height;
   const getWidth = (img, height) => {
     return height * (img.width / img.height);
   };
@@ -114,11 +118,39 @@ window.onload = async () => {
           getWidth(img1, heightBgTShirt),
           heightBgTShirt
         );
-        ctx1.translate(
-          (canvas1.width - widthShirt) / 2 - 2,
-          (canvas1.height - getHeight(img, widthShirt)) / 2 + 40
-        );
-        ctx1.drawImage(img, 0, 0, widthShirt, getHeight(img, widthShirt));
+        if (img.height > heightShirt && img.width > widthShirt) {
+          if (getHeight(img, widthShirt) > heightShirt) {
+            ctx1.translate(
+              (canvas1.width - widthShirt) / 2 - 2,
+              canvas1.height - heightShirt - 80
+            );
+            ctx1.drawImage(img, 0, 0, widthShirt, heightShirt);
+          } else {
+            ctx1.translate(
+              (canvas1.width - widthShirt) / 2 - 2,
+              canvas1.height - getHeight(img, widthShirt) - 80
+            );
+            ctx1.drawImage(img, 0, 0, widthShirt, getHeight(img, widthShirt));
+          }
+        } else if (img.height > heightShirt) {
+          ctx1.translate(
+            (canvas1.width - img.width) / 2 - 2,
+            canvas1.height - heightShirt - 80
+          );
+          ctx1.drawImage(img, 0, 0, img.width, heightShirt);
+        } else if (img.width > widthShirt) {
+          ctx1.translate(
+            (canvas1.width - widthShirt) / 2 - 2,
+            (canvas1.height - img.height) / 2
+          );
+          ctx1.drawImage(img, 0, 0, widthShirt, img.height);
+        } else {
+          ctx1.translate(
+            (canvas1.width - img.width) / 2 - 2,
+            (canvas1.height - img.height) / 2
+          );
+          ctx1.drawImage(img, 0, 0, img.width, img.height);
+        }
         //Curtain
         canvas2.height = heightBgCurtain;
         canvas2.width = getWidth(img2, heightBgCurtain);
@@ -130,11 +162,47 @@ window.onload = async () => {
           getWidth(img2, heightBgCurtain),
           heightBgCurtain
         );
-        ctx2.translate(
-          canvas2.width - widthCurtain,
-          (canvas2.height - getHeight(img, widthCurtain)) / 2
-        );
-        ctx2.drawImage(img, 0, 0, widthCurtain, getHeight(img, widthCurtain));
+        if (img.height > heightCurtain && img.width > widthCurtain) {
+          if (getHeight(img, widthCurtain) > heightCurtain) {
+            ctx2.translate(
+              canvas2.width - widthCurtain,
+              (canvas2.height - heightCurtain) / 2
+            );
+            ctx2.drawImage(img, 0, 0, widthCurtain, heightCurtain);
+            console.log("1");
+          } else {
+            ctx2.translate(
+              canvas2.width - widthCurtain,
+              (canvas2.height - getHeight(img, widthCurtain)) / 2
+            );
+            ctx2.drawImage(
+              img,
+              0,
+              0,
+              widthCurtain,
+              getHeight(img, widthCurtain)
+            );
+            console.log("2");
+          }
+        } else if (img.height > heightCurtain) {
+          ctx2.translate(
+            canvas2.width - img.width - 80,
+            (canvas2.height - heightCurtain) / 2
+          );
+          ctx2.drawImage(img, 0, 0, img.width, heightCurtain);
+        } else if (img.width > widthCurtain) {
+          ctx2.translate(
+            canvas2.width - widthCurtain,
+            (canvas2.height - img.height) / 2
+          );
+          ctx2.drawImage(img, 0, 0, widthCurtain, img.height);
+        } else {
+          ctx2.translate(
+            canvas2.width - img.width - 10,
+            canvas2.height - img.height - 80
+          );
+          ctx2.drawImage(img, 0, 0, img.width, img.height);
+        }
         //Water
         canvas3.height = heightBgWater;
         canvas3.width = getWidth(img3, heightBgWater);
@@ -146,7 +214,7 @@ window.onload = async () => {
           getWidth(img3, heightBgWater),
           heightBgWater
         );
-        ctx3.translate(100, 200);
+        ctx3.translate(200, 150);
         ctx3.rotate((-30 * Math.PI) / 180);
         ctx3.drawImage(img, 0, 0, widthWater, getHeight(img, widthWater));
         //hammer
@@ -160,10 +228,55 @@ window.onload = async () => {
           getWidth(img4, heightBgHammer),
           heightBgHammer
         );
-        ctx4.transform(1, 0.13, 0.2, 0.8, 590, 330);
-        ctx4.rotate((-17 * Math.PI) / 180);
-        ctx4.drawImage(img, 0, 0, 300, 350);
+        ctx4.rotate((-15 * Math.PI) / 180);
+        if (img.height > heightHammer && img.width > widthHammer) {
+          ctx4.transform(
+            1,
+            0.13,
+            0.2,
+            0.8,
+            img4.width - widthHammer - 165,
+            heightBgHammer - heightHammer + 75
+          );
+          if (getHeight(img, widthHammer) > heightHammer) {
+            ctx4.drawImage(img, 0, 0, widthHammer, heightHammer);
+          }
+          ctx4.drawImage(img, 0, 0, widthHammer, getHeight(img, widthHammer));
+        } else if (img.height > heightHammer) {
+          ctx4.transform(
+            1,
+            0.13,
+            0.2,
+            0.8,
+            img4.width / 2.3,
+            img4.height / 1.5 - 5
+          );
+          ctx4.drawImage(img, 0, 0, img.width, heightHammer);
+        } else if (img.width > widthHammer) {
+          ctx4.transform(
+            1,
+            0.13,
+            0.2,
+            0.8,
+            img4.width / 2.4,
+            img4.height / 1.5
+          );
+          ctx4.drawImage(img, 0, 0, widthHammer, img.height);
+        } else {
+          ctx4.transform(1, 0.13, 0.2, 0.8, 200, 200);
+          ctx4.drawImage(img, 0, 0, img.width, img.height);
+        }
         dropZoneElement.style.display = "none";
+        [canvas1, canvas2, canvas3, canvas4].forEach((canvas) =>
+          canvas.addEventListener("click", () => {
+            const a = document.createElement("a");
+            document.body.appendChild(a);
+            a.href = canvas.toDataURL();
+            a.download = `${canvas.getAttribute("data-title")}.png`;
+            a.click();
+            document.body.removeChild(a);
+          })
+        );
       };
     } else {
       thumbnailElement.style.backgroundImage = null;
